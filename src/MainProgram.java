@@ -2,14 +2,7 @@
 import java.awt.Color;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
-import java.text.NumberFormat;
-import java.util.Locale;
-import javax.swing.JFrame;
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 /**
  *
@@ -82,6 +75,7 @@ public class MainProgram extends javax.swing.JFrame {
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 220, 20));
 
         inputamount.setBackground(new java.awt.Color(68, 68, 68));
+        inputamount.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         inputamount.setForeground(new java.awt.Color(255, 255, 255));
         inputamount.setBorder(null);
         inputamount.addActionListener(new java.awt.event.ActionListener() {
@@ -101,6 +95,7 @@ public class MainProgram extends javax.swing.JFrame {
         });
         jPanel1.add(pil1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, -1, -1));
 
+        pil2.setBackground(new java.awt.Color(204, 204, 204));
         pil2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "USD", "IDR", "SGD", "SAR", "JPY" }));
         pil2.setSelectedIndex(1);
         pil2.setBorder(null);
@@ -122,6 +117,7 @@ public class MainProgram extends javax.swing.JFrame {
         });
         jPanel1.add(convert, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, 140, 50));
 
+        output.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         output.setForeground(new java.awt.Color(68, 68, 68));
         output.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         output.setText("-");
@@ -135,7 +131,7 @@ public class MainProgram extends javax.swing.JFrame {
         });
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Currency Converter");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, 30));
@@ -205,12 +201,16 @@ public class MainProgram extends javax.swing.JFrame {
     private void convertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_convertActionPerformed
         // TODO add your handling code here:
         output.setForeground(Color.white);
-        
+        //deklarasi
         double input,hasil,a;
         double uang[]= {1, 14915, 1.413, 3.757, 106.942};
         String matauang[]= {"$","Rp","$","ر.س","¥"}; 
+        
+        
+        //buat objek baru ke class penghitung
         penghitung hitung = new penghitung();
-        //DecimalFormat numberFormat = new DecimalFormat("#.00");
+        
+        //buat format matauang
         DecimalFormat numberFormat = (DecimalFormat) DecimalFormat.getCurrencyInstance();
         DecimalFormatSymbols format = new DecimalFormatSymbols();
         format.setCurrencySymbol(matauang[pil2.getSelectedIndex()]);
@@ -219,30 +219,25 @@ public class MainProgram extends javax.swing.JFrame {
         
         numberFormat.setDecimalFormatSymbols(format);
         
+        //mengambil input user
         input = Double.parseDouble(inputamount.getText());
+        
+        //memeriksa pilihan user
         if(pil1.getSelectedItem().equals("USD")){
-            hasil = hitung.usdtoother(input, uang[pil2.getSelectedIndex()] );            
+            //mengkonversi dengan memanggil method, ambil data kurs dari array
+            hasil = hitung.usdtoother(input, uang[pil2.getSelectedIndex()] ); 
+            //mencetak hasil dan dengan format matauang
             output.setText(numberFormat.format(hasil));
-            
         }
+        //jika combobox 1 bukan USD
         else{
+            //menghitung dengan memanggil method, matauang lain ke usd
             a = hitung.othertousd(input, uang[pil1.getSelectedIndex()] );            
+            //hitung dari usd ke matauang tujuan
             hasil = hitung.usdtoother(a, uang[pil2.getSelectedIndex()]);
+            //mencetak hasil
             output.setText(numberFormat.format(hasil));
-         
         }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
     }//GEN-LAST:event_convertActionPerformed
 
     private void inputamountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputamountActionPerformed
@@ -251,27 +246,23 @@ public class MainProgram extends javax.swing.JFrame {
     }//GEN-LAST:event_inputamountActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        // tombol close
         System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        //tombol minimize
          setState(ICONIFIED);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        // tombol clear
         inputamount.setText(" ");
         output.setText(" ");
-        
-        
-        
-        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jPanel2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseDragged
-        // TODO add your handling code here:
+        // drag
         int x = evt.getXOnScreen();
         int y = evt.getYOnScreen();
         
