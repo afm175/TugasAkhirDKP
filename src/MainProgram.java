@@ -1,5 +1,6 @@
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 
@@ -44,6 +45,7 @@ public class MainProgram extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
         jSeparator1 = new javax.swing.JSeparator();
         inputamount = new javax.swing.JTextField();
         pil1 = new javax.swing.JComboBox<>();
@@ -57,25 +59,24 @@ public class MainProgram extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(68, 68, 68));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(204, 204, 255));
-        jLabel2.setText("Input Amount");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, -1));
+        jLabel2.setText("Result");
+
+        jSeparator2.setBackground(new java.awt.Color(204, 204, 204));
 
         jSeparator1.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 220, 20));
 
         inputamount.setBackground(new java.awt.Color(68, 68, 68));
-        inputamount.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        inputamount.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         inputamount.setForeground(new java.awt.Color(255, 255, 255));
         inputamount.setBorder(null);
         inputamount.addActionListener(new java.awt.event.ActionListener() {
@@ -83,45 +84,63 @@ public class MainProgram extends javax.swing.JFrame {
                 inputamountActionPerformed(evt);
             }
         });
-        jPanel1.add(inputamount, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 208, 37));
+        inputamount.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                inputamountKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputamountKeyTyped(evt);
+            }
+        });
 
         pil1.setBackground(new java.awt.Color(204, 204, 204));
         pil1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "USD", "IDR", "SGD", "SAR", "JPY" }));
         pil1.setBorder(null);
+        pil1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                pil1MouseMoved(evt);
+            }
+        });
         pil1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pil1ActionPerformed(evt);
             }
         });
-        jPanel1.add(pil1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, -1, -1));
 
         pil2.setBackground(new java.awt.Color(204, 204, 204));
         pil2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "USD", "IDR", "SGD", "SAR", "JPY" }));
         pil2.setSelectedIndex(1);
         pil2.setBorder(null);
+        pil2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                pil2MouseMoved(evt);
+            }
+        });
         pil2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pil2ActionPerformed(evt);
             }
         });
-        jPanel1.add(pil2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, -1, -1));
 
         convert.setIcon(new javax.swing.ImageIcon("F:\\program\\praktikum dkp\\TA\\Converter\\Repeat Grid 7.png")); // NOI18N
         convert.setBorder(null);
         convert.setBorderPainted(false);
         convert.setContentAreaFilled(false);
+        convert.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                convertMouseMoved(evt);
+            }
+        });
         convert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 convertActionPerformed(evt);
             }
         });
-        jPanel1.add(convert, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, 140, 50));
 
-        output.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        output.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         output.setForeground(new java.awt.Color(68, 68, 68));
         output.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         output.setText("-");
-        jPanel1.add(output, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 220, 36));
 
         jPanel2.setBackground(new java.awt.Color(0, 209, 205));
         jPanel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -141,6 +160,11 @@ public class MainProgram extends javax.swing.JFrame {
         jButton1.setBorder(null);
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
+        jButton1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jButton1MouseMoved(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -153,6 +177,11 @@ public class MainProgram extends javax.swing.JFrame {
         jButton2.setBorder(null);
         jButton2.setBorderPainted(false);
         jButton2.setContentAreaFilled(false);
+        jButton2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jButton2MouseMoved(evt);
+            }
+        });
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -160,31 +189,103 @@ public class MainProgram extends javax.swing.JFrame {
         });
         jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, -1, 50));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 380, 60));
-
         jLabel3.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(204, 204, 255));
         jLabel3.setText("From");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(204, 204, 255));
         jLabel4.setText("To");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, -1, -1));
 
         jButton3.setIcon(new javax.swing.ImageIcon("F:\\program\\praktikum dkp\\TA\\Converter\\Group 2.png")); // NOI18N
         jButton3.setActionCommand("clear");
         jButton3.setBorder(null);
         jButton3.setBorderPainted(false);
         jButton3.setContentAreaFilled(false);
+        jButton3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jButton3MouseMoved(evt);
+            }
+        });
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, -1, 50));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 380, 410));
+        jLabel5.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(204, 204, 255));
+        jLabel5.setText("Input Amount");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(inputamount, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(16, 16, 16)
+                        .addComponent(pil1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47)
+                        .addComponent(jLabel4)
+                        .addGap(13, 13, 13)
+                        .addComponent(pil2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton3)
+                        .addGap(28, 28, 28)
+                        .addComponent(convert, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(output, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(jLabel5)
+                .addGap(13, 13, 13)
+                .addComponent(inputamount, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(pil1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(pil2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addComponent(jLabel2)
+                .addGap(23, 23, 23)
+                .addComponent(output, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(convert, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(75, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
 
         pack();
         setLocationRelativeTo(null);
@@ -199,7 +300,9 @@ public class MainProgram extends javax.swing.JFrame {
     }//GEN-LAST:event_pil2ActionPerformed
 
     private void convertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_convertActionPerformed
-        // TODO add your handling code here:
+
+// TODO add your handling code here:
+
         output.setForeground(Color.white);
         //deklarasi
         double input,hasil,a;
@@ -238,6 +341,7 @@ public class MainProgram extends javax.swing.JFrame {
             //mencetak hasil
             output.setText(numberFormat.format(hasil));
         }
+
     }//GEN-LAST:event_convertActionPerformed
 
     private void inputamountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputamountActionPerformed
@@ -268,6 +372,51 @@ public class MainProgram extends javax.swing.JFrame {
         
         this.setLocation(x, y);
     }//GEN-LAST:event_jPanel2MouseDragged
+
+    private void inputamountKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputamountKeyPressed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_inputamountKeyPressed
+
+    private void inputamountKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputamountKeyTyped
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_inputamountKeyTyped
+
+    private void jButton2MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseMoved
+        // TODO add your handling code here:
+        Cursor c = new Cursor(Cursor.HAND_CURSOR);
+        jButton2.setCursor(c);
+    }//GEN-LAST:event_jButton2MouseMoved
+
+    private void jButton1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseMoved
+        // TODO add your handling code here:
+        Cursor c = new Cursor(Cursor.HAND_CURSOR);
+        jButton1.setCursor(c);
+    }//GEN-LAST:event_jButton1MouseMoved
+
+    private void jButton3MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseMoved
+        // TODO add your handling code here:
+        Cursor c = new Cursor(Cursor.HAND_CURSOR);
+        jButton3.setCursor(c);
+    }//GEN-LAST:event_jButton3MouseMoved
+
+    private void convertMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_convertMouseMoved
+        // TODO add your handling code here:
+        Cursor c = new Cursor(Cursor.HAND_CURSOR);
+        convert.setCursor(c);
+    }//GEN-LAST:event_convertMouseMoved
+
+    private void pil1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pil1MouseMoved
+        // TODO add your handling code here:
+        Cursor c = new Cursor(Cursor.HAND_CURSOR);
+        pil1.setCursor(c);
+    }//GEN-LAST:event_pil1MouseMoved
+
+    private void pil2MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pil2MouseMoved
+        Cursor c = new Cursor(Cursor.HAND_CURSOR);
+        pil2.setCursor(c);
+    }//GEN-LAST:event_pil2MouseMoved
 
     /**
      * @param args the command line arguments
@@ -302,6 +451,8 @@ public class MainProgram extends javax.swing.JFrame {
                 new MainProgram().setVisible(true);
             }
         });
+
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -314,9 +465,11 @@ public class MainProgram extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel output;
     private javax.swing.JComboBox<String> pil1;
     private javax.swing.JComboBox<String> pil2;
