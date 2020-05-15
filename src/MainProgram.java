@@ -15,12 +15,6 @@ public class MainProgram extends javax.swing.JFrame {
     /**
      * Creates new form MainProgram
      */
-    
-
-    
-    
-    
-    
     public MainProgram() {
         initComponents();
     }
@@ -319,7 +313,9 @@ public class MainProgram extends javax.swing.JFrame {
         //memeriksa pilihan user
         if(pil1.getSelectedItem().equals("USD")){
             //mengkonversi dengan memanggil method, ambil data kurs dari array
+            //setter
             hitung.usdtoother(input, uang[pil2.getSelectedIndex()] ); 
+            //getter
             hasil = hitung.ambilhasil();
             //mencetak hasil dan dengan format matauang
             output.setText(numberFormat.format(hasil));
@@ -327,10 +323,14 @@ public class MainProgram extends javax.swing.JFrame {
         //jika combobox 1 bukan USD
         else{
             //menghitung dengan memanggil method, matauang lain ke usd
+            //setter
             hitung.othertousd(input, uang[pil1.getSelectedIndex()] );
+            //getter
             a = hitung.ambilhasil();
             //hitung dari usd ke matauang tujuan
+            //setter
             hitung.usdtoother(a, uang[pil2.getSelectedIndex()]);
+            //getter
             hasil = hitung.ambilhasil();
             //mencetak hasil
             output.setText(numberFormat.format(hasil));
