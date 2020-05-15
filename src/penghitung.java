@@ -9,7 +9,7 @@
  * @author Azzam
  */
 public class penghitung {
-    private double hasil;
+   private double hasil;
     public void usdtoother(double a, double b){
         hasil = a*b;
     }
