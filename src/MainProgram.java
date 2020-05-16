@@ -4,6 +4,7 @@ import java.awt.Cursor;
 import java.awt.event.KeyEvent;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -209,7 +210,7 @@ public class MainProgram extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(75, 75, 75)
+                .addGap(66, 66, 66)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(inputamount, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -253,11 +254,11 @@ public class MainProgram extends javax.swing.JFrame {
                 .addComponent(output, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
+                .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(convert, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGap(18, 27, Short.MAX_VALUE)
                 .addComponent(jButton4))
         );
 
@@ -279,7 +280,8 @@ public class MainProgram extends javax.swing.JFrame {
     private void convertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_convertActionPerformed
 
 // TODO add your handling code here:
-
+        try {
+            
         output.setForeground(Color.white);
         //deklarasi
         double input,hasil,a;
@@ -327,6 +329,9 @@ public class MainProgram extends javax.swing.JFrame {
             output.setText(numberFormat.format(hasil));
         }
 
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(rootPane, e.getMessage());
+        }
     }//GEN-LAST:event_convertActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -372,6 +377,9 @@ public class MainProgram extends javax.swing.JFrame {
 
     private void inputamountKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputamountKeyTyped
         // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c)&&c!='.')
+        {evt.consume();}
 
     }//GEN-LAST:event_inputamountKeyTyped
 
